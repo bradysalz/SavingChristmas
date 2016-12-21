@@ -1,5 +1,5 @@
 config.py
-
+*.bin
 
 # Created by https://www.gitignore.io/api/python,pycharm,sublimetext,c++,c
 

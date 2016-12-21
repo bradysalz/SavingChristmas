@@ -1,0 +1,3 @@
+# Firmware
+
+Particle Core firmware.

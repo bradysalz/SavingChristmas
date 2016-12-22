@@ -1,3 +1,3 @@
 from flaskapp import app
 
-app.run()
+app.run(port=4321, debug=True)

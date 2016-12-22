@@ -1,0 +1,45 @@
+{
+    "User 1": {
+        "name": "Anna",
+        "url": "annahome",
+        "particleID": "4578809756",
+        "color": {
+            "red": 255,
+            "green": 173,
+            "blue": 232
+        }
+    },
+
+    "User 2": {
+        "name": "Brady",
+        "url": "bradyhome",
+        "particleID": "78980798",
+        "color": {
+            "red": 255,
+            "green": 173,
+            "blue": 232
+        }
+    },
+
+    "User 3": {
+        "name": "Chris",
+        "url": "chrishome",
+        "particleID": "78980798",
+        "color": {
+            "red": 255,
+            "green": 173,
+            "blue": 232
+        }
+    },
+
+    "User 4": {
+        "name": "Daniel Home",
+        "url": "danielhome",
+        "particleID": "78980798",
+        "color": {
+            "red": 255,
+            "green": 173,
+            "blue": 232
+        }
+    }
+}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="col-lg-1"></div>
+<div class="col-lg-10 well bs-component">
+<form class="form-horizontal">
+  <fieldset>
+    <legend>Light Settings</legend>
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Subscribe To</label>
+      <div class="col-lg-10">
+      {% for data in users %}
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> {{ data['name'] }}
+          </label>
+        </div>
+      {% endfor %}
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputEmail" class="col-lg-2 control-label">Color</label>
+      <div class="col-lg-5">
+       <input class="jscolor form-control" value="ab2567">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </fieldset>
+</form>
+</div>
+<div class="col-lg-1"></div>
+{% endblock %}

@@ -54,7 +54,7 @@ void setup() {
     attachInterrupt(BUTTON_PIN, lampTouched, FALLING);
 
     Particle.function("setColor", setLedColor);
-    Particle.function("")
+    // Particle.function("")
 
     // TODO: get color from server on startup
     InitColor();

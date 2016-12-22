@@ -35,6 +35,11 @@ unsigned long tButtonPressTime;
 int setLedColor(String color); 
 void lampTouched();
 void pulseRing();
+void sendGetRequest();
+void setMyColor();
+void InitColor();
+void lampTouched();
+void turnLightsOff();
 
 void setup() {
 

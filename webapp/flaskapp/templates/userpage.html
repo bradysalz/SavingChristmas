@@ -3,7 +3,7 @@
 {% block body %}
 <div class="col-lg-1"></div>
 <div class="col-lg-10 well bs-component">
-<form class="form-horizontal">
+<form name="light-settings" class="form-horizontal" method="POST">
   <fieldset>
     <legend>Light Settings</legend>
     <div class="form-group">
@@ -12,16 +12,16 @@
       {% for data in users %}
         <div class="checkbox">
           <label>
-            <input type="checkbox"> {{ data['name'] }}
+            <input type="checkbox" name="check" value="{{ data['name'] }}"> {{ data['name'] }}
           </label>
         </div>
       {% endfor %}
       </div>
     </div>
     <div class="form-group">
-      <label for="inputEmail" class="col-lg-2 control-label">Color</label>
+      <label for="lightColor" class="col-lg-2 control-label">Color</label>
       <div class="col-lg-5">
-       <input class="jscolor form-control" value="ab2567">
+       <input class="jscolor form-control text" name="color" value="ab2567">
       </div>
     </div>
     <div class="form-group">
@@ -32,5 +32,27 @@
   </fieldset>
 </form>
 </div>
+
+{% if update %}
+<script type="text/javascript">
+    $(window).load(function(){
+        $('#myModal').modal('show');
+    });
+</script>
+
+<div class="modal" id="myModal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Settings Updated!</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
 <div class="col-lg-1"></div>
 {% endblock %}

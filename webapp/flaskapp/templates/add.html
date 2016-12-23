@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block body %}
+
+<div class="col-lg-1"></div>
+<div class="col-lg-10 well bs-component">
+<form class="form-horizontal" action="/newuser" method="post">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Add User</legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="user-name">Name</label>  
+  <div class="col-md-4">
+  <input id="user-name" name="user-name" type="text" placeholder="Karen Home" class="form-control input-md" required="">
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="core-id">Photon ID</label>  
+  <div class="col-md-4">
+  <input id="core-id" name="core-id" type="text" placeholder="270039000447343337373738" class="form-control input-md" required="">
+  </div>
+</div>
+
+
+<!-- Text input-->
+<div class="form-group">
+  <label for="lightColor" class="col-md-4 control-label">Color</label>
+  <div class="col-md-4">
+   <input class="jscolor form-control text" name="color" value="ab2567">
+  </div>
+</div>
+
+<!-- User Selection -->
+<div class="form-group">
+  <label class="col-md-4 control-label">Subscribe To</label>
+  <div class="col-md-4">
+  {% for data in users %}
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" name="check" value="{{ data['name'] }}"> {{ data['name'] }}
+      </label>
+    </div>
+  {% endfor %}
+  </div>
+</div>
+
+</fieldset>
+</form>
+
+</div>
+
+{% endblock %}

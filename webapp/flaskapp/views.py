@@ -26,6 +26,15 @@ def home():
 
     return render_template('home.html', users=users)
 
+@app.route('/getmycolor', methods=['POST'])
+def get_my_color():
+	"""
+	called by particle when it wakes up
+	"""
+	print("WOW")
+	print(request.data)
+	print(request.form)
+	return "hello"
 
 @app.route('/newuser', methods=['GET', 'POST'])
 def add_user():

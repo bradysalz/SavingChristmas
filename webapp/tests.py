@@ -10,6 +10,7 @@ from flaskapp.models import User, db
 
 class TestCase(unittest.TestCase):
     def setUp(self):
+        app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
         app.config['TESTING'] = True
         app.config['WTF_CSRF_ENABLED'] = False
         app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
@@ -49,6 +50,8 @@ class TestCase(unittest.TestCase):
         db.session.add(u1)
         db.session.add(u2)
         db.session.commit()
+        assert not u1.is_following(u2)
+        assert not u2.is_following(u1)
         assert u1.unfollow(u2) is None
         u = u1.follow(u2)
         db.session.add(u)

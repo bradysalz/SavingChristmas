@@ -1,13 +1,11 @@
 import requests
-import json
-
 from flaskapp import app
 from flaskapp.models import db, User, add_user_to_db
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from .config import SECRET_KEY
 
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///lights.db'
-app.config['SQLALCHEMY_TRACK_MODIFICIATIONS'] = False
 app.secret_key = SECRET_KEY
 
 # First time init, run python in webapp/
@@ -48,7 +46,7 @@ def add_user():
     if request.method == 'POST':
         print(request.form['name'])
         add_user_to_db(db, request.form)
-        return render_template('add.html')
+        return redirect(url_for('home'), code=302)
 
 
 @app.route('/user/<user_url>', methods=['GET', 'POST'])
@@ -58,11 +56,24 @@ def user_page(user_url):
     Currently no authentication
     """
     current_user = User.query.filter(User.url == user_url).first()
-    users = User.query.all().remove(current_user)
+    users = User.query.all()
+    users.remove(current_user)
+
+    if users is None:
+        users = []
+
+    # TODO: @KAREN
+    # Debug why this doesn't work
+    # test.py checks all of this and passes
+    # throws up an error about how it can't find the 
+    # follower.id column in followers table
+    is_following = [False if current_user.is_following(user) is None else True 
+                    for user in users]
+    followers = zip(users, is_following)
 
     if request.method == 'GET':
         return render_template('userpage.html', current_user=current_user, 
-                                users=users, update=False)
+                                followers=followers, update=False)
 
     if request.method == 'POST':
         # TODO 
@@ -70,7 +81,7 @@ def user_page(user_url):
         sel_users = request.form.getlist('check')
         chosen_color = request.values['color']
         return render_template('userpage.html', current_user=current_user,
-                                users=users, update=True)
+                                followers=followers, update=True)
 
 
 @app.route('/touch/<user>')

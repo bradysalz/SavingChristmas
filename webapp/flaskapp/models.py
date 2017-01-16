@@ -8,15 +8,6 @@ followers = db.Table('followers',
 )
 
 
-def add_user_to_db(db, form):
-    """
-    Add new user to the database
-    TODO: add selected followers
-    """
-    new_user = User(name=form['name'], color=form['color'], coreID=form['core-id'])
-    db.session.add(new_user)
-    db.session.commit()
-
 class User(db.Model):
     """
     SavingChristmas Light Node User
@@ -38,7 +29,7 @@ class User(db.Model):
 
     def __init__(self, name, color="", coreID="", url=None):
         if url is None:
-            url = (name + "home").lower()
+            url = (name.replace(" ", "") + "home").lower()
 
         if url[0] == "/":
             url = url[1:]
@@ -63,3 +54,13 @@ class User(db.Model):
 
     def is_following(self, user):
         return self.followed.filter(followers.c.followed_id == user.id).count() > 0
+
+
+def add_user_to_db(db, form):
+    """
+    Add new user to the database
+    TODO: add selected followers
+    """
+    new_user = User(name=form['name'], color=form['color'], coreID=form['core-id'])
+    db.session.add(new_user)
+    db.session.commit()

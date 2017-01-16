@@ -5,15 +5,27 @@
 <div class="col-lg-10 well bs-component">
 <form name="light-settings" class="form-horizontal" method="POST">
   <fieldset>
-    <legend>Light Settings</legend>
+    <legend>{{ current_user.name }} Settings</legend>
     <div class="form-group">
-      <label class="col-lg-2 control-label">Subscribe To</label>
+      <label for="core-id" class="col-lg-2 col-md-2 control-label">Core ID</label>
+      <div class="col-lg-5 col-md-4">
+       <input class="form-control text" name="core-id" value="{{current_user.coreID}}">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="lightColor" class="col-lg-2 col-md-2 control-label">Color</label>
+      <div class="col-lg-5 col-md-2">
+       <input class="jscolor form-control text" name="color" value="ab2567">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-2 col-md-2 control-label">Subscribe To</label>
       <div class="col-lg-10">
-      {% for user in users %}
+      {% for user, following in followers %}
         <div class="checkbox">
           <label>
             <input type="checkbox" name="check" value="{{ user.name }}"
-            {% if current_user.is_following(user) %}
+            {% if following %}
               checked="checked" 
             {% endif %}> {{ user.name }}
           </label>
@@ -22,14 +34,8 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="lightColor" class="col-lg-2 control-label">Color</label>
-      <div class="col-lg-5">
-       <input class="jscolor form-control text" name="color" value="ab2567">
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-lg-10 col-lg-offset-2">
-        <button type="submit" class="btn btn-primary">Submit</button>
+      <div class="col-lg-10 col-lg-offset-2 col-md-offset-2">
+        <button type="submit" class="btn btn-primary">Update</button>
       </div>
     </div>
   </fieldset>

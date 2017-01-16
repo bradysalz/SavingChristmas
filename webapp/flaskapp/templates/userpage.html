@@ -9,10 +9,13 @@
     <div class="form-group">
       <label class="col-lg-2 control-label">Subscribe To</label>
       <div class="col-lg-10">
-      {% for data in users %}
+      {% for user in users %}
         <div class="checkbox">
           <label>
-            <input type="checkbox" name="check" value="{{ data['name'] }}"> {{ data['name'] }}
+            <input type="checkbox" name="check" value="{{ user.name }}"
+            {% if current_user.is_following(user) %}
+              checked="checked" 
+            {% endif %}> {{ user.name }}
           </label>
         </div>
       {% endfor %}

@@ -2,8 +2,8 @@
 
 {% block body %}
 
-{% for id in users %}
-  <a href="/{{ users[id]['url'] }}" class="btn btn-default btn-lg btn-block"> {{ users[id]['name'] }}</a>
+{% for user in users %}
+  <a href="/user/{{ user.url }}" class="btn btn-default btn-lg btn-block"> {{ user.name }}</a>
 {% endfor %}
 
 

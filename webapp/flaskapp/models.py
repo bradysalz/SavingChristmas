@@ -7,6 +7,16 @@ followers = db.Table('followers',
     db.Column('followed_id', db.Integer, db.ForeignKey('user.id'))
 )
 
+
+def add_user_to_db(db, form):
+    """
+    Add new user to the database
+    TODO: add selected followers
+    """
+    new_user = User(name=form['name'], color=form['color'], coreID=form['core-id'])
+    db.session.add(new_user)
+    db.session.commit()
+
 class User(db.Model):
     """
     SavingChristmas Light Node User
@@ -53,7 +63,3 @@ class User(db.Model):
 
     def is_following(self, user):
         return self.followed.filter(followers.c.followed_id == user.id).count() > 0
-
-
-def add_user(db, form):
-    pass
